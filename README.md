@@ -15,24 +15,51 @@ The core flow:
    products**, filtered to manufacturer-direct sellers or
    manufacturer-certified refurbished, and shows ranked results.
 
-## Current status: Phase 1
+## Current status: Phase 1 + Phase 2 search
 
-This repo currently implements **Phase 1** of the build plan: the
-questionnaire → spec rules engine as a standalone, unit-tested module, plus
-a React UI for the questionnaire and the resulting spec target. No external
-APIs are involved yet.
+The questionnaire → spec rules engine (Phase 1) plus the product search
+layer (Phase 2): a matching/ranking engine, a results UI with price and
+certification badges, and a scheduled GitHub Action that refreshes the
+catalog from the Best Buy and eBay APIs. Until API credentials are
+configured (see below) the site searches a clearly-labeled sample catalog
+so the full flow works end to end.
 
 ```
 src/
-  engine/            Pure rules engine (no I/O, no React) — designed to be
-                     shared with the future backend as-is.
+  engine/            Pure engine modules (no I/O, no React) — designed to
+                     be shared with a future backend as-is.
     types.ts         Questionnaire input + SpecTarget output types
     specEngine.ts    recommendSpec(answers) → { spec, maxBudget, warnings }
     specEngine.test.ts  Unit tests covering every rules-table row
+    products.ts      Normalized Product shape shared with the fetch script
+    matching.ts      Title-spec parsing + matchProducts ranking
+    matching.test.ts Unit tests for parsing/scoring/ranking
     labels.ts        Display labels for engine enums
-  components/        Questionnaire form + spec result card
+  components/        Questionnaire form, spec result card, results list
   App.tsx            Page shell
+scripts/
+  fetch-products.mjs Pulls Best Buy + eBay certified-refurbished laptops,
+                     writes public/products.json
+public/products.json The product catalog the site searches (sample data
+                     until live credentials are configured)
 ```
+
+### Turning on live retailer data
+
+Both APIs are free. Once keys exist, add them as GitHub Actions secrets
+(repo → Settings → Secrets and variables → Actions) and run the
+**Refresh product data** workflow (it also runs on a 6-hour schedule):
+
+1. **Best Buy** — sign up at https://developer.bestbuy.com, add the key
+   as secret `BESTBUY_API_KEY`. Results are first-party (sold by Best
+   Buy).
+2. **eBay** — create an app at https://developer.ebay.com, add secrets
+   `EBAY_CLIENT_ID` and `EBAY_CLIENT_SECRET`. Results are filtered to
+   eBay's manufacturer-backed **Certified Refurbished** program only.
+
+The workflow commits the refreshed `public/products.json`, which triggers
+the Pages deployment — the live site picks up new prices automatically.
+With no secrets configured, the workflow leaves the sample catalog alone.
 
 ### Running it
 
