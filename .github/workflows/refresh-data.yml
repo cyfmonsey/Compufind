@@ -21,6 +21,10 @@ jobs:
           BESTBUY_API_KEY: ${{ secrets.BESTBUY_API_KEY }}
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
+          COSTCO_FEED_URL: ${{ secrets.COSTCO_FEED_URL }}
+          BHPHOTO_FEED_URL: ${{ secrets.BHPHOTO_FEED_URL }}
+          DELL_FEED_URL: ${{ secrets.DELL_FEED_URL }}
+          HP_FEED_URL: ${{ secrets.HP_FEED_URL }}
         run: node scripts/fetch-products.mjs
       - name: Commit updated catalog
         run: |

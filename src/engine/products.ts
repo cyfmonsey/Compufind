@@ -3,7 +3,7 @@
  * writes public/products.json) and the frontend matching layer.
  */
 
-export type Retailer = 'bestbuy' | 'ebay'
+export type Retailer = 'bestbuy' | 'ebay' | 'costco' | 'bhphoto' | 'dell' | 'hp'
 
 export type SellerType = 'direct' | 'certified-refurbished'
 
@@ -44,4 +44,8 @@ export interface ProductsFile {
 export const RETAILER_LABELS: Record<Retailer, string> = {
   bestbuy: 'Best Buy',
   ebay: 'eBay',
+  costco: 'Costco',
+  bhphoto: 'B&H Photo',
+  dell: 'Dell',
+  hp: 'HP',
 }
