@@ -5,6 +5,7 @@ import {
   GPU_TIER_LABELS,
   formatStorage,
 } from '../engine/labels.ts'
+import Results from './Results.tsx'
 
 interface Props {
   recommendation: SpecRecommendation
@@ -85,19 +86,7 @@ export default function SpecResult({ recommendation, onReset }: Props) {
         </button>
       </div>
 
-      <div className="results-placeholder">
-        <h3>Matching machines</h3>
-        <p>
-          Live pricing is coming next: this is where in-budget matches from
-          Best Buy, eBay Certified Refurbished, and manufacturer/outlet stores
-          will appear — every result sold directly by the retailer or
-          manufacturer-certified refurbished, with a badge showing which.
-        </p>
-        <div className="badge-examples" aria-hidden="true">
-          <span className="badge badge-direct">Sold by retailer</span>
-          <span className="badge badge-refurb">Certified refurbished</span>
-        </div>
-      </div>
+      <Results recommendation={recommendation} />
     </section>
   )
 }

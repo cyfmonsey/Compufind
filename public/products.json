@@ -1,0 +1,132 @@
+{
+ "generatedAt": "2026-07-02T00:00:00.000Z",
+ "sampleData": true,
+ "products": [
+  {
+   "id": "sample-1",
+   "title": "Lenovo IdeaPad Slim 3 15.6\" Laptop - Intel Core i5-1334U - 8GB Memory - 256GB SSD",
+   "price": 379.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=lenovo+ideapad+slim+3",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-2",
+   "title": "HP Pavilion 15.6\" Laptop - Intel Core i5-1335U - 16GB Memory - 512GB SSD",
+   "price": 599.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=hp+pavilion+15+i5+16gb",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-3",
+   "title": "ASUS Zenbook 14 OLED 2-in-1 - Intel Core Ultra 5 - 16GB Memory - 512GB SSD",
+   "price": 749.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=asus+zenbook+14+oled",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-4",
+   "title": "Dell Inspiron 16 Laptop - Intel Core i7-1355U - 16GB Memory - 1TB SSD",
+   "price": 849.99,
+   "url": "https://www.ebay.com/sch/i.html?_nkw=dell+inspiron+16+i7&LH_ItemCondition=2010",
+   "retailer": "ebay",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-5",
+   "title": "Lenovo ThinkPad T14s Gen 4 - Ryzen 7 7840U - 32GB RAM - 1TB SSD",
+   "price": 989.0,
+   "url": "https://www.ebay.com/sch/i.html?_nkw=thinkpad+t14s+gen+4+32gb&LH_ItemCondition=2010",
+   "retailer": "ebay",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-6",
+   "title": "HP Victus 15.6\" Gaming Laptop - Intel Core i5-13420H - 16GB Memory - 512GB SSD - GeForce RTX 4050",
+   "price": 799.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=hp+victus+rtx+4050",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-7",
+   "title": "Acer Nitro V 15 Gaming Laptop - Intel Core i7-13620H - 16GB Memory - 1TB SSD - GeForce RTX 4060",
+   "price": 999.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=acer+nitro+v+rtx+4060",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-8",
+   "title": "ASUS ROG Strix G16 - Intel Core i9-14900HX - 32GB DDR5 RAM - 1TB SSD - GeForce RTX 4060",
+   "price": 1399.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=rog+strix+g16+i9+4060",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-9",
+   "title": "Lenovo Legion Pro 5i - Intel Core i9-14900HX - 32GB RAM - 1TB SSD - GeForce RTX 4070",
+   "price": 1599.99,
+   "url": "https://www.ebay.com/sch/i.html?_nkw=legion+pro+5i+i9+4070&LH_ItemCondition=2010",
+   "retailer": "ebay",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-10",
+   "title": "MacBook Air 13\" - Apple M3 - 16GB Memory - 512GB SSD",
+   "price": 1099.0,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=macbook+air+m3+16gb",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-11",
+   "title": "MacBook Pro 14\" - Apple M3 Pro - 36GB Memory - 1TB SSD",
+   "price": 1999.0,
+   "url": "https://www.ebay.com/sch/i.html?_nkw=macbook+pro+14+m3+pro&LH_ItemCondition=2010",
+   "retailer": "ebay",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-12",
+   "title": "HP Spectre x360 14\" 2-in-1 - Intel Core Ultra 7 - 32GB Memory - 1TB SSD",
+   "price": 1299.99,
+   "url": "https://www.bestbuy.com/site/searchpage.jsp?st=hp+spectre+x360+14",
+   "retailer": "bestbuy",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-13",
+   "title": "Dell XPS 15 - Intel Core i7-13700H - 32GB RAM - 1TB SSD - GeForce RTX 4050",
+   "price": 1449.0,
+   "url": "https://www.ebay.com/sch/i.html?_nkw=dell+xps+15+9530+32gb&LH_ItemCondition=2010",
+   "retailer": "ebay",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-14",
+   "title": "Microsoft Surface Laptop 5 - Intel Core i5-1235U - 8GB Memory - 512GB SSD",
+   "price": 649.0,
+   "url": "https://www.ebay.com/sch/i.html?_nkw=surface+laptop+5+i5&LH_ItemCondition=2010",
+   "retailer": "ebay",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  }
+ ]
+}
