@@ -1,15 +1,28 @@
 /**
- * Fetches laptop listings from the Best Buy and eBay APIs, normalizes
- * them to the shared Product shape, and writes public/products.json.
+ * Fetches laptop listings from every connected source and writes the
+ * combined, normalized catalog to public/products.json.
  *
  * Sourcing constraint: Best Buy API results are first-party (sold by
  * Best Buy); eBay results are filtered to CERTIFIED_REFURBISHED, eBay's
- * manufacturer-backed refurbished program. No third-party-marketplace
- * "new" listings are ever requested.
+ * manufacturer-backed refurbished program. Costco, B&H Photo, Dell, and
+ * HP have no self-serve developer API — they're pulled from your
+ * affiliate-network product feed instead (see affiliate-feed.mjs), which
+ * carries seller-of-record with it, so Costco/B&H rows are always
+ * first-party and Dell/HP rows are flagged certified-refurbished only
+ * when their own condition column says so (Dell Refurbished, HP Certified
+ * Refurbished, etc.). No third-party-marketplace "new" listings are ever
+ * requested.
  *
- * Required environment (either or both):
+ * Required environment (any subset):
  *   BESTBUY_API_KEY                      https://developer.bestbuy.com
  *   EBAY_CLIENT_ID / EBAY_CLIENT_SECRET  https://developer.ebay.com
+ *   COSTCO_FEED_URL                      affiliate network feed URL for Costco
+ *   BHPHOTO_FEED_URL                     affiliate network feed URL for B&H Photo
+ *   DELL_FEED_URL                        affiliate network feed URL for Dell (+ Outlet/Refurbished)
+ *   HP_FEED_URL                          affiliate network feed URL for HP (+ Outlet/Certified Refurbished)
+ *
+ * Feed URLs come from your Impact / Rakuten Advertising / CJ Affiliate
+ * account once approved for that merchant's program — see README.md.
  *
  * With no credentials set, exits 0 without touching products.json so
  * the committed sample catalog stays in place.
@@ -18,6 +31,7 @@
 import { writeFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
+import { fetchAffiliateFeed } from './affiliate-feed.mjs'
 
 const OUT_PATH = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'products.json')
 
@@ -101,8 +115,16 @@ const bestBuyKey = process.env.BESTBUY_API_KEY
 const ebayId = process.env.EBAY_CLIENT_ID
 const ebaySecret = process.env.EBAY_CLIENT_SECRET
 
-if (!bestBuyKey && !(ebayId && ebaySecret)) {
-  console.log('No retailer API credentials set — keeping the existing catalog.')
+const AFFILIATE_FEEDS = [
+  { retailer: 'costco', envVar: 'COSTCO_FEED_URL', alwaysDirect: true },
+  { retailer: 'bhphoto', envVar: 'BHPHOTO_FEED_URL', alwaysDirect: true },
+  { retailer: 'dell', envVar: 'DELL_FEED_URL', alwaysDirect: false },
+  { retailer: 'hp', envVar: 'HP_FEED_URL', alwaysDirect: false },
+]
+const configuredFeeds = AFFILIATE_FEEDS.filter((f) => process.env[f.envVar])
+
+if (!bestBuyKey && !(ebayId && ebaySecret) && configuredFeeds.length === 0) {
+  console.log('No retailer API credentials or feed URLs set — keeping the existing catalog.')
   process.exit(0)
 }
 
@@ -115,6 +137,13 @@ if (bestBuyKey) {
 if (ebayId && ebaySecret) {
   const items = await fetchEbay(ebayId, ebaySecret)
   console.log(`eBay certified refurbished: ${items.length} products`)
+  products.push(...items)
+}
+for (const feed of configuredFeeds) {
+  const items = await fetchAffiliateFeed(feed.retailer, process.env[feed.envVar], {
+    alwaysDirect: feed.alwaysDirect,
+  })
+  console.log(`${feed.retailer}: ${items.length} products`)
   products.push(...items)
 }
 

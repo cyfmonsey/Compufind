@@ -46,9 +46,15 @@ public/products.json The product catalog the site searches (sample data
 
 ### Turning on live retailer data
 
-Both APIs are free. Once keys exist, add them as GitHub Actions secrets
-(repo → Settings → Secrets and variables → Actions) and run the
-**Refresh product data** workflow (it also runs on a 6-hour schedule):
+Add credentials as GitHub Actions secrets (repo → Settings → Secrets and
+variables → Actions), then run the **Refresh product data** workflow (it
+also runs on a 6-hour schedule). The workflow commits the refreshed
+`public/products.json`, which triggers the Pages deployment — the live
+site picks up new prices automatically. With no secrets configured, the
+workflow leaves the sample catalog alone. Any subset of the sources below
+can be configured independently.
+
+**Direct developer APIs (free, self-serve signup):**
 
 1. **Best Buy** — sign up at https://developer.bestbuy.com, add the key
    as secret `BESTBUY_API_KEY`. Results are first-party (sold by Best
@@ -57,9 +63,36 @@ Both APIs are free. Once keys exist, add them as GitHub Actions secrets
    `EBAY_CLIENT_ID` and `EBAY_CLIENT_SECRET`. Results are filtered to
    eBay's manufacturer-backed **Certified Refurbished** program only.
 
-The workflow commits the refreshed `public/products.json`, which triggers
-the Pages deployment — the live site picks up new prices automatically.
-With no secrets configured, the workflow leaves the sample catalog alone.
+**Costco, B&H Photo, Dell, and HP — via an affiliate network:**
+
+These four don't offer a self-serve developer API; their product data
+is only exposed through an affiliate network's product feed once you're
+approved for that merchant's program (this is an application, not an
+instant signup — approval can take a few days). Apply to one or more of:
+
+- **Impact** — https://impact.com
+- **Rakuten Advertising** — https://rakutenadvertising.com
+- **CJ Affiliate** — https://www.cj.com
+
+Once approved for a merchant, the network gives you a per-merchant
+product feed URL (a CSV export, typically refreshed daily). Add whichever
+you have as a secret and the scheduled workflow picks it up automatically
+via `scripts/affiliate-feed.mjs`, a network-agnostic CSV importer that
+handles the column-naming differences between networks:
+
+| Secret | Merchant |
+|---|---|
+| `COSTCO_FEED_URL` | Costco (always first-party) |
+| `BHPHOTO_FEED_URL` | B&H Photo (always first-party) |
+| `DELL_FEED_URL` | Dell, including Dell Outlet / Dell Refurbished |
+| `HP_FEED_URL` | HP, including HP Outlet / HP Certified Refurbished |
+
+For Dell and HP, the importer reads each row's condition column and only
+marks a listing certified-refurbished when the feed itself says so
+(e.g. "Refurbished", "Outlet", "Renewed") — otherwise it's treated as a
+new, direct-from-manufacturer listing. Costco and B&H only ever sell
+first-party stock, so their rows are always `direct` regardless of the
+condition column.
 
 ### Running it
 

@@ -127,6 +127,78 @@
    "retailer": "ebay",
    "sellerType": "certified-refurbished",
    "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-15",
+   "title": "Lenovo Slim 5 14\" 2-in-1 Laptop - Intel Core Ultra 5 - 16GB Memory - 512GB SSD",
+   "price": 719.99,
+   "url": "https://www.costco.com/CatalogSearch?keyword=lenovo+slim+5+14+2+in+1",
+   "retailer": "costco",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-16",
+   "title": "ASUS Vivobook 16 Laptop - AMD Ryzen 7 7730U - 16GB RAM - 1TB SSD",
+   "price": 649.99,
+   "url": "https://www.costco.com/CatalogSearch?keyword=asus+vivobook+16+ryzen+7",
+   "retailer": "costco",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-17",
+   "title": "Dell XPS 14 Laptop - Intel Core Ultra 7 - 32GB RAM - 1TB SSD - GeForce RTX 4050",
+   "price": 1699.99,
+   "url": "https://www.bhphotovideo.com/c/search?q=dell+xps+14+ultra+7+rtx+4050",
+   "retailer": "bhphoto",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-18",
+   "title": "Apple MacBook Pro 16\" - M3 Max - 48GB Memory - 1TB SSD",
+   "price": 3199.0,
+   "url": "https://www.bhphotovideo.com/c/search?q=macbook+pro+16+m3+max+48gb",
+   "retailer": "bhphoto",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-19",
+   "title": "Dell Inspiron 15 3535 Laptop - AMD Ryzen 5 7430U - 16GB Memory - 512GB SSD",
+   "price": 549.99,
+   "url": "https://www.dell.com/en-us/shop/dell-laptops/sf/laptops/inspiron-laptops",
+   "retailer": "dell",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-20",
+   "title": "Dell Latitude 5440 Refurbished Laptop - Intel Core i7-1355U - 16GB Memory - 512GB SSD",
+   "price": 699.0,
+   "url": "https://www.dell.com/en-us/shop/dell-refurbished/sr/dell-refurbished",
+   "retailer": "dell",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
+  },
+  {
+   "id": "sample-21",
+   "title": "HP Envy x360 14\" 2-in-1 Laptop - Intel Core Ultra 5 - 16GB Memory - 512GB SSD",
+   "price": 849.99,
+   "url": "https://www.hp.com/us-en/shop/cv/laptops",
+   "retailer": "hp",
+   "sellerType": "direct",
+   "condition": "new"
+  },
+  {
+   "id": "sample-22",
+   "title": "HP EliteBook 840 G10 Certified Refurbished - Intel Core i7-1355U - 32GB Memory - 1TB SSD",
+   "price": 949.0,
+   "url": "https://www.hp.com/us-en/shop/cv/certified-refurbished-laptops",
+   "retailer": "hp",
+   "sellerType": "certified-refurbished",
+   "condition": "certified-refurbished"
   }
  ]
 }
